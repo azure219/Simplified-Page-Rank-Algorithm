@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -11,7 +12,6 @@ class AdjacencyList {
 
     public:
     //Think about what helper functions you will need in the algorithm
-    void uniqueSites();
     string PageRank(int n);
 };
 
