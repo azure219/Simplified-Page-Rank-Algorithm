@@ -3,6 +3,12 @@
 
 using namespace std;
 
+void uniqueSites() {
+
+    
+
+}
+
 // prints the PageRank of all pages after p powerIterations in ascending
 // alphabetical order of webpages and rounding rank to two decimal places
 string AdjacencyList::PageRank(int n){
