@@ -5,6 +5,8 @@
 #include <unordered_map>
 #include <vector>
 #include <set>
+#include <iomanip>
+#include <sstream>
 
 using namespace std;
 
@@ -14,6 +16,7 @@ class AdjacencyList {
     int numVertices;
 
     map<string, float> rankedPages;
+    map<string, float> matrixMSums;
 
     public:
     //Think about what helper functions you will need in the algorithm
@@ -28,9 +31,11 @@ class AdjacencyList {
 
     }
 
+    void CreateGraph(unordered_map<string, set<string>> sitesMap, unordered_map<string, int> frequencyMap);
+    
     string PageRank(int n);
 
-    void print(unordered_map<string, set<string>> mapUO) {
+    void CreateR(unordered_map<string, set<string>> mapUO) {
 
         unordered_map<string, set<string>>::iterator iter1 = mapUO.begin();
 
@@ -39,12 +44,12 @@ class AdjacencyList {
             ++iter1;
         }
 
-        map<string, float>::iterator iter2 = rankedPages.begin();
+        // map<string, float>::iterator iter2 = rankedPages.begin();
 
-	    while (iter2 != rankedPages.end()) {
-            cout << iter2->first << " " << iter2->second << "\n";
-            ++iter2;
-        }
+	    // while (iter2 != rankedPages.end()) {
+        //     cout << iter2->first << " " << iter2->second << "\n";
+        //     ++iter2;
+        // }
 
     }
     

@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void printMap(unordered_map<string, set<string>> sitesMap) {
+void PrintMap(unordered_map<string, set<string>> sitesMap) {
 
     unordered_map<string, set<string>>::iterator iter1 = sitesMap.begin();
 
@@ -29,7 +29,7 @@ void printMap(unordered_map<string, set<string>> sitesMap) {
 
 }
 
-void printFrequency(unordered_map<string, int> map) {
+void PrintFrequency(unordered_map<string, int> map) {
 
     unordered_map<string, int>::iterator iter = map.begin();
 
@@ -63,12 +63,15 @@ int main() {
     // graph.printOut();
     // cout << "\n";
     // graph.printIn();
+
+    // cout << "\n";
+    // PrintFrequency(frequencyMap);
+    // cout << "\n";
+    // PrintMap(edgesMap);
     cout << "\n";
-    printFrequency(frequencyMap);
-    cout << "\n";
-    printMap(edgesMap);
-    cout << "\n";
-    graph.print(edgesMap);
+    graph.CreateR(edgesMap);
+    graph.CreateGraph(edgesMap, frequencyMap);
+    graph.PageRank(power_iterations);
 
     //Create a graph object
     // Created_Graph.PageRank(power_iterations);}

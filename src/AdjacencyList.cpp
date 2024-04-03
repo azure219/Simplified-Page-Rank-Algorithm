@@ -3,6 +3,35 @@
 
 using namespace std;
 
+void AdjacencyList::CreateGraph(unordered_map<string, set<string>> sitesMap, unordered_map<string, int> frequencyMap) {
+
+    unordered_map<string, set<string>>::iterator iter1 = sitesMap.begin();
+
+	while (iter1 != sitesMap.end()) {
+    
+        set<string>::iterator iter2 = iter1->second.begin();
+        float sum = 0.0;
+
+        // Displaying set elements
+        while (iter2 != iter1->second.end()) {
+
+            sum += (float)(1.0 / frequencyMap.find(*iter2)->second);
+            ++iter2;
+        }
+        
+        matrixMSums[iter1->first] = sum;
+        ++iter1;
+    }
+
+    // map<string, float>::iterator iter = matrixMSums.begin();
+
+	// while (iter != matrixMSums.end()) {
+    //     cout << "KEY: " << iter->first << " VALUE: " << iter->second << "\n";
+    //     ++iter;
+    // }
+
+}
+
 // prints the PageRank of all pages after p powerIterations in ascending
 // alphabetical order of webpages and rounding rank to two decimal places
 string AdjacencyList::PageRank(int n){
@@ -10,6 +39,29 @@ string AdjacencyList::PageRank(int n){
     string result;
 
     // do your page rank
+    for (int i = 1; i < n; i++) {
+
+        map<string, float>::iterator iter1 = rankedPages.begin();
+
+        while (iter1 != rankedPages.end()) {
+            rankedPages[iter1->first] = iter1->second * matrixMSums.at(iter1->first);
+            ++iter1;
+        }
+
+    }
+
+    map<string, float>::iterator iter = rankedPages.begin();
+
+        while (iter != rankedPages.end()) {
+            
+            float rankFloat = iter->second;
+            stringstream stream;
+            stream << fixed << setprecision(2) << rankFloat;
+            string rankString = stream.str();
+
+            result += (iter->first + " " + rankString + "\n");
+            ++iter;
+        }
 
     cout << result;
     return result;
