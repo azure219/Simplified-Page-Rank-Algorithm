@@ -43,8 +43,8 @@ void printFrequency(unordered_map<string, int> map) {
 int main() {
     int no_of_lines, power_iterations;
     string from, to;
-    unordered_map<string, int> uniqueSitesMap;
-    unordered_map<string, set<string>> uniqueSitesSet;
+    unordered_map<string, int> frequencyMap;
+    unordered_map<string, set<string>> edgesMap;
     cin >> no_of_lines;
     cin >> power_iterations;
 
@@ -54,8 +54,8 @@ int main() {
         cin >> from;
         cin >> to;
         // Do Something
-  	    uniqueSitesMap[from]++;
-        uniqueSitesSet[to].insert(from);
+  	    frequencyMap[from]++;
+        edgesMap[to].insert(from);
         //graph.insertEdge(from, to);
     }
 
@@ -64,11 +64,11 @@ int main() {
     // cout << "\n";
     // graph.printIn();
     cout << "\n";
-    printFrequency(uniqueSitesMap);
+    printFrequency(frequencyMap);
     cout << "\n";
-    printMap(uniqueSitesSet);
+    printMap(edgesMap);
     cout << "\n";
-    graph.print(uniqueSitesSet);
+    graph.print(edgesMap);
 
     //Create a graph object
     // Created_Graph.PageRank(power_iterations);}

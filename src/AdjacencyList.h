@@ -32,8 +32,11 @@ class AdjacencyList {
 
     void print(unordered_map<string, set<string>> mapUO) {
 
-        for (auto &node : mapUO) {
-            rankedPages[node.first] = (float)(1.0 / mapUO.size());
+        unordered_map<string, set<string>>::iterator iter1 = mapUO.begin();
+
+        while (iter1 != mapUO.end()) {
+            rankedPages[iter1->first] = (float)(1.00 / mapUO.size());
+            ++iter1;
         }
 
         map<string, float>::iterator iter2 = rankedPages.begin();
