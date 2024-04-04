@@ -1,59 +1,40 @@
 #pragma once
 
-#include <string>
-#include <map>
-#include <unordered_map>
-#include <vector>
-#include <set>
 #include <iomanip>
 #include <sstream>
+#include <string>
+#include <map>
+#include <set>
 
 using namespace std;
 
 class AdjacencyList {
-    private: //Think about what member variables you need to initialize
-    int numVertices;
 
-    map<string, float> rankedPages;
-    map<string, float> matrixMSums;
-    map<string, set<pair<string, float>>> matrixM;
+    private: // Think about what member variables you need to initialize
 
-    map<string, int> frequencyMap;
-    map<string, set<string>> edgesMap;
+        int numVertices; // number of vertices
 
-    public: //Think about what helper functions you will need in the algorithm
+        map<string, set<pair<string, float>>> graphM; // graph M
+        map<string, float> graphR; // graph r
 
-    AdjacencyList() {
+        map<string, int> frequencyMap; // map that holds the frequency of websites (d)
+        map<string, set<string>> edgesMap; // map that holds the edges of websites
 
-    }
+    public: // Think about what helper functions you will need in the algorithm
 
-    void PrintEdges();
-    void PrintFrequency();
+        // constructor
+        AdjacencyList() {}
 
-    void GenerateGraphs(string from, string to);
+        // print functions
+        void PrintEdges();
+        void PrintFrequency();
 
-    void CreateGraphM();
-    
-    string PageRank(int n);
+        // graph generation functions
+        void GenerateGraphs(string from, string to);
+        void CreateGraphM();
+        void CreateGraphR();
 
-    void CreateGraphR() {
+        // rank algorithm function
+        string PageRank(int n);
 
-        map<string, set<string>>::iterator iter1 = edgesMap.begin();
-
-        while (iter1 != edgesMap.end()) {
-            rankedPages[iter1->first] = (float)(1.00 / edgesMap.size());
-            ++iter1;
-        }
-
-        // map<string, float>::iterator iter2 = rankedPages.begin();
-
-	    // while (iter2 != rankedPages.end()) {
-        //     cout << iter2->first << " " << iter2->second << "\n";
-        //     ++iter2;
-        // }
-
-    }
-    
 };
-
-// This class and method are optional.
