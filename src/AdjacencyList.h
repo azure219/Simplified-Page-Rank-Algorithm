@@ -11,36 +11,37 @@
 using namespace std;
 
 class AdjacencyList {
-    private:
-    //Think about what member variables you need to initialize
+    private: //Think about what member variables you need to initialize
     int numVertices;
 
     map<string, float> rankedPages;
     map<string, float> matrixMSums;
+    map<string, set<pair<string, float>>> matrixM;
 
-    public:
-    //Think about what helper functions you will need in the algorithm
+    map<string, int> frequencyMap;
+    map<string, set<string>> edgesMap;
 
-    unordered_map<string, unsigned int> outDegreeGraph;  // Store the out_degree connection (from -> to)
-    unordered_map<string, vector<string>> inDegreeGraph;  // Store the in_degree connection (to -> from (out_degree)
-    void printOut();
-    void printIn();
-    void insertEdge(string &from, string &to);
+    public: //Think about what helper functions you will need in the algorithm
 
     AdjacencyList() {
 
     }
 
-    void CreateGraph(unordered_map<string, set<string>> sitesMap, unordered_map<string, int> frequencyMap);
+    void PrintEdges();
+    void PrintFrequency();
+
+    void GenerateGraphs(string from, string to);
+
+    void CreateGraphM();
     
     string PageRank(int n);
 
-    void CreateR(unordered_map<string, set<string>> mapUO) {
+    void CreateGraphR() {
 
-        unordered_map<string, set<string>>::iterator iter1 = mapUO.begin();
+        map<string, set<string>>::iterator iter1 = edgesMap.begin();
 
-        while (iter1 != mapUO.end()) {
-            rankedPages[iter1->first] = (float)(1.00 / mapUO.size());
+        while (iter1 != edgesMap.end()) {
+            rankedPages[iter1->first] = (float)(1.00 / edgesMap.size());
             ++iter1;
         }
 
