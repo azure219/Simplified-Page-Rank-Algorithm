@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <sstream>
 #include <string>
+#include <vector>
 #include <map>
 #include <set>
 
@@ -16,6 +17,7 @@ class AdjacencyList {
 
         map<string, set<pair<string, float>>> graphM; // graph M
         map<string, float> graphR; // graph r
+        vector<string> empties;
 
         map<string, int> frequencyMap; // map that holds the frequency of websites (d)
         map<string, set<string>> edgesMap; // map that holds the edges of websites
@@ -24,6 +26,9 @@ class AdjacencyList {
 
         // constructor
         AdjacencyList() {}
+
+        // parsing function for testing
+        string ParseInput(string input);
 
         // print functions
         void PrintEdges();

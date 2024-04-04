@@ -3,6 +3,31 @@
 
 using namespace std;
 
+// parses string input and returns final string
+string AdjacencyList::ParseInput(string input) {
+
+    AdjacencyList graph;
+    int no_of_lines, power_iterations;
+    string from, to;
+
+    istringstream iss(input);
+    iss >> no_of_lines >> power_iterations;
+    //cout << "LINES: " << no_of_lines << ", POWER: " << power_iterations;
+
+    for (int i = 0; i < no_of_lines; i++) {
+
+        iss >> from >> to;
+  	    graph.GenerateGraphs(from, to);
+
+    }
+
+    graph.CreateGraphR();
+    graph.CreateGraphM();
+
+    return graph.PageRank(power_iterations);
+
+}
+
 // functions to print frequencyMap and edgesMap
 void AdjacencyList::PrintEdges() {
 
@@ -39,8 +64,17 @@ void AdjacencyList::PrintFrequency() {
 void AdjacencyList::GenerateGraphs(string from, string to) {
 
     frequencyMap[from]++;
+    //cout << "to: " << to << " from: " << from << endl; 
     edgesMap[to].insert(from);
     numVertices = frequencyMap.size(); // 'numVertices' updates as the size of 'frequencyMap' increases
+
+    // if (frequencyMap.find(to) == frequencyMap.end()) {
+    //     frequencyMap[to] = 0;
+    // }
+    if (edgesMap.find(from) == edgesMap.end()) {
+        // edgesMap[from].insert({});
+        empties.push_back(from);
+    }
 
 }
 
@@ -144,10 +178,16 @@ string AdjacencyList::PageRank(int n) {
     }
 
     // to print
-    map<string, float>::iterator iter = graphR.begin();
+    map<string, float> tempPrint = graphR;
+
+    for (long unsigned int i = 0; i < empties.size(); i++) {
+        tempPrint.insert(pair<string, float>(empties[i],0.0));
+    }
+
+    map<string, float>::iterator iter = tempPrint.begin();
 
     // generates string 'result'
-    while (iter != graphR.end()) {
+    while (iter != tempPrint.end()) {
             
         float rankFloat = iter->second;
         stringstream stream;

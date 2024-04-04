@@ -28,6 +28,7 @@ int main() {
     // cout << "\n";
     // graph.PrintEdges(); // printIn
 
+    cout << "\n";
     graph.CreateGraphR();
     graph.CreateGraphM();
     graph.PageRank(power_iterations);
