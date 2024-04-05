@@ -7,7 +7,7 @@
 using namespace std;
 
 // the syntax for defining a test is below. It is important for the name to be unique, but you can group multiple tests with [tags]. A test can have [multiple][tags] using that syntax.
-/* TEST_CASE("Example Test Name - Change me!", "[tag]"){
+TEST_CASE("Example Test Name - Change me!", "[tag]"){
     // instantiate any class members that you need to test here
     int one = 1;
 
@@ -33,14 +33,14 @@ TEST_CASE("Test 2", "[tag]"){
     };
 
     // each section runs the setup code independently to ensure that they don't affect each other
-} */
+}
 
 // you must write 5 unique, meaningful tests for extra credit on this project!
 
 // See the following for an example of how to easily test your output.
 // This uses C++ "raw strings" and assumes your PageRank outputs a string with
 //   the same thing you print.
-/* TEST_CASE("Example PageRank Output Test", "[flag]"){
+TEST_CASE("Example PageRank Output Test", "[flag]"){
     // the following is a "raw string" - you can write the exact input (without
     //   any indentation!) and it should work as expected
     string input = R"(7 2
@@ -68,7 +68,7 @@ ufl.edu 0.20
     // actualOutput = g.getStringRepresentation()
 
     REQUIRE(actualOutput == expectedOutput);
-} */
+} 
 
 TEST_CASE("Test 1", "[custom]") {
     // the following is a "raw string" - you can write the exact input (without
